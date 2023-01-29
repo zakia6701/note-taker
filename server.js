@@ -1,11 +1,15 @@
-const express = require("express")
-const req = require("express/lib/request")
-const path = require('path')
-const res = require("express/lib/response")
-const app = express ()
+const express = require("express");
+
+const path = require('path');
+
+const app = express();
 const PORT = 3000
 
-app.get('/',(req,res)=>{
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'./public/index.html'))
 })
 app.get('/notes',(req,res)=>{

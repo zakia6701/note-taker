@@ -21,12 +21,12 @@ app.get("/notes", (req, res) => {
 app.get("/api/notes", (req, res) => {
   res.json(db);
 });
-//psoting the notes from 
+//creating the note from the input of the user
 const postNote = (body, notesArr) => {
   const newNote = body;
   body.id = notesArr.length;
   notesArr.push(newNote);
-
+//posting the notes
   fs.writeFileSync(
     path.join(__dirname, "./db/db.json"),
     JSON.stringify(notesArr)
